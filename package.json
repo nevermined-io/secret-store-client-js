@@ -1,0 +1,50 @@
+{
+  "name": "@oceanprotocol/squid",
+  "version": "0.0.10",
+  "description": "JavaScript client library for Ocean Protocol",
+  "main": "dist/squid.js",
+  "scripts": {
+    "test": "eslint ./src",
+    "start": "babel ./src/ --watch --out-dir ./dist/",
+    "build": "babel ./src/ --out-dir ./dist/",
+    "release": "./node_modules/release-it/bin/release-it.js --src.tagName='v%s' --github.release --npm.publish --non-interactive",
+    "release-minor": "./node_modules/release-it/bin/release-it.js minor --src.tagName='v%s' --github.release --npm.publish --non-interactive",
+    "release-major": "./node_modules/release-it/bin/release-it.js major --src.tagName='v%s' --github.release --npm.publish --non-interactive",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceanprotocol/squid-js.git"
+  },
+  "keywords": [],
+  "author": "Ocean Protocol <devops@oceanproocol.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/oceanprotocol/squid-js/issues"
+  },
+  "homepage": "https://github.com/oceanprotocol/squid-js#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "@oceanprotocol/keeper-contracts": "^0.1.0",
+    "truffle-contract": "^3.0.6",
+    "web3": "0.20.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "eslint": "^5.5.0",
+    "eslint-config-oceanprotocol": "^1.2.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=8 <10"
+  }
+}

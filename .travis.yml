@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+- "8"
+
+services:
+- docker
+
+cache:
+  directories:
+  - node_modules
+
+matrix:
+  fast_finish: true
+
+before_install:
+  - npm install -g npm
+  - npm install -g release-it greenkeeper-lockfile
+
+before_script:
+  - greenkeeper-lockfile-update
+
+script:
+  - npm test
+  - npm run build
+
+after_script:
+  - greenkeeper-lockfile-upload
+
+notifications:
+  email: false
