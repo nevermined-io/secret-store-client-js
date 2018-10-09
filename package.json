@@ -26,6 +26,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "@oceanprotocol/keeper-contracts": "^0.1.0",
+    "jayson": "^2.0.6",
     "truffle-contract": "^3.0.6",
     "web3": "0.20.6"
   },
