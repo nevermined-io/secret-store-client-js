@@ -1,8 +1,8 @@
 {
-  "name": "@oceanprotocol/squid",
+  "name": "@oceanprotocol/secret-store-client",
   "version": "0.0.10",
   "description": "JavaScript client library for Ocean Protocol",
-  "main": "dist/squid.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "eslint ./src",
     "start": "babel ./src/ --watch --out-dir ./dist/",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oceanprotocol/squid-js.git"
+    "url": "git+https://github.com/oceanprotocol/secret-store-client-js.git"
   },
   "keywords": [],
   "author": "Ocean Protocol <devops@oceanproocol.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/oceanprotocol/squid-js/issues"
+    "url": "https://github.com/oceanprotocol/secret-store-client-js/issues"
   },
-  "homepage": "https://github.com/oceanprotocol/squid-js#readme",
+  "homepage": "https://github.com/oceanprotocol/secret-store-client-js#readme",
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "@oceanprotocol/keeper-contracts": "^0.1.0",
