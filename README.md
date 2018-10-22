@@ -16,6 +16,8 @@
 
   - [Get started](#get-started)
   - [Development](#development)
+    - [Testing](#testing)
+    - [Documentation](#documentation)
     - [Production build](#production-build)
     - [npm releases](#npm-releases)
   - [License](#license)
@@ -30,7 +32,6 @@ Start by adding the package to your dependencies:
 npm i @oceanprotocol/secret-store-client
 ```
 
-
 ## Development
 
 To start development you need to:
@@ -40,7 +41,46 @@ npm i
 npm start
 ```
 
+### Testing
+
+Testing needs a local instance of parity installed. You get one docker instance of it by calling:
+```bash
+chmod +x ./parity/parity.sh && ./parity/parity.sh
+```
+
+This will create docker container named `secretstore-parity`
+
+To start test you need to:
+
+```bash
+npm run test
+```
+
+To run a single testsuite `ParityClient` for example:
+
+```bash
+npm run test -- -g "ParityClient"
+```
+
+To watch tests
+
+```bash
+npm run test:watch
+```
+
 This will start a watcher for changes of the code.
+
+To create code coverage
+```bash
+npm run test:cover
+```
+
+### Documentation
+
+To create code documentation
+```bash
+npm run doc
+```
 
 ### Production build
 
