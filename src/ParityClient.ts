@@ -67,7 +67,7 @@ export default class ParityClient {
         return new Promise((resolve, reject) => {
             rpcClient.request(methodName, paramsList,
                 (err, response) => {
-                    const error = response.error || err
+                    const error = err || response.error
                     if (error) {
                         return reject(error)
                     }
