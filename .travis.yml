@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- "8"
+- "10"
 
 services:
 - docker
@@ -13,19 +13,19 @@ matrix:
   fast_finish: true
 
 before_install:
-  - npm install -g npm
-  - npm install -g release-it greenkeeper-lockfile
+- npm install -g npm
+- npm install -g release-it greenkeeper-lockfile
 
 before_script:
-  - greenkeeper-lockfile-update
-  - chmod +x ./parity/parity.sh && ./parity/parity.sh
+- greenkeeper-lockfile-update
+- chmod +x ./parity/parity.sh && ./parity/parity.sh
 
 script:
-  - npm test -- --timeout 10000
-  - npm run build
+- npm test -- --timeout 10000
+- npm run build
 
 after_script:
-  - greenkeeper-lockfile-upload
+- greenkeeper-lockfile-upload
 
 notifications:
   email: false
