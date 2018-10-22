@@ -6,4 +6,5 @@ coverage/
 tslint.json
 tsconfig.json
 .travis.yml
+parity/
 oceanprotocol-secret-store-client-*.tgz
