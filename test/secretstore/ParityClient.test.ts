@@ -1,21 +1,14 @@
 import BigNumber from "bignumber.js"
 import {assert} from "chai"
-import ConfigProvider from "../../../squid-js/src/ConfigProvider"
-import Config from "../../../squid-js/src/models/Config"
 import GeneratedKey from "../../src/keys/GeneratedKey"
 import ParityClient from "../../src/ParityClient"
-import * as GeneratedKeyMaterial from "./keys/GeneratedKey.json"
-import * as RetrievedKeyMaterial from "./keys/RetrievedKey.json"
-import * as ServerKey from "./keys/ServerKey.json"
+import * as GeneratedKeyMaterial from "./secrets/GeneratedKey.json"
+import * as RetrievedKeyMaterial from "./secrets/RetrievedKey.json"
+import * as ServerKey from "./secrets/ServerKey.json"
+import * as testAccount from "./secrets/testAccount.json"
 
 const parityUrl = "http://localhost:9545"
 
-ConfigProvider.configure({
-    nodeUri: parityUrl,
-} as Config)
-
-const address = "0xa50f397644973dba99624404b2894825840aa03b"
-const password = "unittest"
 const testDocument = {
     so: "secure",
     soWow: true,
@@ -23,7 +16,8 @@ const testDocument = {
 
 const parityClient: ParityClient = new ParityClient({
     url: parityUrl,
-    address, password,
+    address: testAccount.address,
+    password: testAccount.password,
 })
 
 function generateRandomId(): string {

@@ -1,15 +1,10 @@
 import BigNumber from "bignumber.js"
 import {assert} from "chai"
-import ConfigProvider from "../../../squid-js/src/ConfigProvider"
-import Config from "../../../squid-js/src/models/Config"
 import SecretStore from "../../src/SecretStore"
+import * as testAccount from "./secrets/testAccount.json"
 
 const parityUrl = "http://localhost:9545"
 const ssUrl = "https://secret-store.dev-ocean.com"
-
-ConfigProvider.configure({
-    nodeUri: parityUrl,
-} as Config)
 
 const testDocument = {
     so: "ocean",
@@ -18,12 +13,9 @@ const testDocument = {
     i: "blow up this document with blind text",
 }
 
-const address = "0xa50f397644973dba99624404b2894825840aa03b"
-const password = "unittest"
-
 const secretStore: SecretStore = new SecretStore({
     secretStoreUrl: ssUrl, parityUrl,
-    address, password,
+    address: testAccount.address, password: testAccount.password,
     threshold: 2,
 })
 
