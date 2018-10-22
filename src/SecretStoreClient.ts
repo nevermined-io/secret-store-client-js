@@ -7,9 +7,10 @@ export default class SecretStoreClient {
     private threshold: number
     private url: string
 
-    constructor(config: { url: string, threshold?: number }) {
+    constructor(config: { url: string, threshold: number }) {
         this.url = config.url
-        this.threshold = config.threshold || 1
+        // threshold of nodes that have to agree
+        this.threshold = config.threshold
     }
 
     public async generateServerKey(serverKeyId: string, serverKeyIdSig: string): Promise<string> {
@@ -20,7 +21,7 @@ export default class SecretStoreClient {
             this.threshold,
         ].join("/")
 
-        // Logger.log("url", url)
+        console.log("url", url)
 
         const result = await fetch(url, {
             method: "POST",

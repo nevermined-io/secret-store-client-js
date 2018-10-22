@@ -23,8 +23,8 @@ const password = "unittest"
 
 const secretStore: SecretStore = new SecretStore({
     secretStoreUrl: ssUrl, parityUrl,
-    address,
-    password,
+    address, password,
+    threshold: 2,
 })
 
 function generateRandomId(): string {
