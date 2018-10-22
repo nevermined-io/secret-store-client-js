@@ -4,7 +4,7 @@ import ConfigProvider from "../../../squid-js/src/ConfigProvider"
 import Config from "../../../squid-js/src/models/Config"
 import SecretStore from "../../src/SecretStore"
 
-const parityUrl = "http://localhost:8545"
+const parityUrl = "http://localhost:9545"
 const ssUrl = "https://secret-store.dev-ocean.com"
 
 ConfigProvider.configure({

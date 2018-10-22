@@ -8,7 +8,7 @@ import * as GeneratedKeyMaterial from "./keys/GeneratedKey.json"
 import * as RetrievedKeyMaterial from "./keys/RetrievedKey.json"
 import * as ServerKey from "./keys/ServerKey.json"
 
-const parityUrl = "http://localhost:8545"
+const parityUrl = "http://localhost:9545"
 
 ConfigProvider.configure({
     nodeUri: parityUrl,
