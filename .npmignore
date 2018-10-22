@@ -1,1 +1,9 @@
 node_modules/
+src/
+test/
+coverage/
+.nyc_output/
+tslint.json
+tsconfig.json
+.travis.yml
+oceanprotocol-secret-store-client-*.tgz
