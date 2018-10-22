@@ -21,8 +21,6 @@ export default class SecretStoreClient {
             this.threshold,
         ].join("/")
 
-        console.log("url", url)
-
         const result = await fetch(url, {
             method: "POST",
         })
