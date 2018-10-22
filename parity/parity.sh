@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+cd ./parity/
+
 docker run -d \
-    --volume $(pwd)/keys/:/root/.local/share/io.parity.ethereum/keys/DevelopmentChain:ro \
+    --volume $(pwd)/keys/:/root/.local/share/io.parity.ethereum/keys/DevelopmentChain \
     --name secretstore-parity \
     -p 9545:8545 \
     parity/parity:stable \
