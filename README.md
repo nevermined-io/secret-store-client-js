@@ -11,6 +11,7 @@
 
 ## Table of Contents
 
+  - [Introduction](#introduction)
   - [Get started](#get-started)
     - [Usage](#usage)
   - [Development](#development)
@@ -21,6 +22,10 @@
   - [License](#license)
 
 ---
+
+## Introduction
+
+This client abstracts the interface of the [Parity Secret Store](https://wiki.parity.io/Secret-Store) to just two methods `encryptDocument` and `decryptDocument`. It uses a local parity node to sign the generation of keys and stores them remotely into an instance of the secret store.
 
 ## Get started
 
