@@ -3,7 +3,7 @@ import {assert} from "chai"
 import SecretStore from "../../src/SecretStore"
 import * as testAccount from "./secrets/testAccount.json"
 
-const parityUrl = "http://localhost:9545"
+const parityUri = "http://localhost:9545"
 const ssUrl = "https://secret-store.dev-ocean.com"
 
 const testDocument = {
@@ -14,7 +14,7 @@ const testDocument = {
 }
 
 const secretStore: SecretStore = new SecretStore({
-    secretStoreUrl: ssUrl, parityUrl,
+    secretStoreUri: ssUrl, parityUri,
     address: testAccount.address, password: testAccount.password,
     threshold: 2,
 })

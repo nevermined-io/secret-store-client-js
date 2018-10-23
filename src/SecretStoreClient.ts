@@ -1,23 +1,29 @@
 import fetch from "node-fetch"
-import HexHelpler from "./HexHelpler"
-import RetrievedKey from "./keys/RetrievedKey"
+import RetrievedKey from "./models/keys/RetrievedKey"
+import SecretStoreClientConfig from "./models/SecretStoreClientConfig"
+import HexHelper from "./tools/HexHelper"
 
 export default class SecretStoreClient {
 
     private threshold: number
     private url: string
 
-    constructor(config: { url: string, threshold: number }) {
+    constructor(config: SecretStoreClientConfig) {
         this.url = config.url
         // threshold of nodes that have to agree
         this.threshold = config.threshold
     }
 
+    /**
+     * Generates server key from serverKeyId and serverKeyIdSignature
+     * @param serverKeyId the server key id
+     * @param serverKeyIdSig the server key id, signed with the given account
+     */
     public async generateServerKey(serverKeyId: string, serverKeyIdSig: string): Promise<string> {
 
         const url = [
             this.url, "shadow", serverKeyId,
-            HexHelpler.removeLeading0xPrefix(serverKeyIdSig),
+            HexHelper.removeLeading0xPrefix(serverKeyIdSig),
             this.threshold,
         ].join("/")
 
@@ -41,10 +47,17 @@ export default class SecretStoreClient {
         return result
     }
 
+    /**
+     * Stores document key in the secret store
+     * @param serverKeyId the server key id
+     * @param serverKeyIdSig the server key id, signed with the given account
+     * @param commonPoint the common point created during generateDocumentKeyFromServerKey
+     * @param encryptedPoint the encrypted point created during generateDocumentKeyFromServerKey
+     */
     public async storeDocumentKey(serverKeyId: string, serverKeyIdSig: string,
                                   commonPoint: string, encryptedPoint: string): Promise<boolean> {
-        const url = [this.url, "shadow", serverKeyId, HexHelpler.removeLeading0xPrefix(serverKeyIdSig),
-            HexHelpler.removeLeading0xPrefix(commonPoint), HexHelpler.removeLeading0xPrefix(encryptedPoint)]
+        const url = [this.url, "shadow", serverKeyId, HexHelper.removeLeading0xPrefix(serverKeyIdSig),
+            HexHelper.removeLeading0xPrefix(commonPoint), HexHelper.removeLeading0xPrefix(encryptedPoint)]
             .join("/")
 
         // Logger.log("url", url)
@@ -69,9 +82,14 @@ export default class SecretStoreClient {
         return result
     }
 
+    /**
+     * Retrieves the document key from secret store using serverKeyId and serverKeyId signature
+     * @param serverKeyId the server key id
+     * @param serverKeyIdSig the server key id, signed with the given account
+     */
     public async retrieveDocumentKey(serverKeyId, serverKeyIdSig): Promise<RetrievedKey> {
 
-        const url = [this.url, "shadow", serverKeyId, HexHelpler.removeLeading0xPrefix(serverKeyIdSig)]
+        const url = [this.url, "shadow", serverKeyId, HexHelper.removeLeading0xPrefix(serverKeyIdSig)]
             .join("/")
 
         // Logger.log("url", url)

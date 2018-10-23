@@ -1,13 +1,13 @@
 import BigNumber from "bignumber.js"
 import {assert} from "chai"
-import GeneratedKey from "../../src/keys/GeneratedKey"
+import GeneratedKey from "../../src/models/keys/GeneratedKey"
 import ParityClient from "../../src/ParityClient"
 import * as GeneratedKeyMaterial from "./secrets/GeneratedKey.json"
 import * as RetrievedKeyMaterial from "./secrets/RetrievedKey.json"
 import * as ServerKey from "./secrets/ServerKey.json"
 import * as testAccount from "./secrets/testAccount.json"
 
-const parityUrl = "http://localhost:9545"
+const parityUri = "http://localhost:9545"
 
 const testDocument = {
     so: "secure",
@@ -15,7 +15,7 @@ const testDocument = {
 }
 
 const parityClient: ParityClient = new ParityClient({
-    url: parityUrl,
+    url: parityUri,
     address: testAccount.address,
     password: testAccount.password,
 })
@@ -39,10 +39,10 @@ describe("ParityClient", () => {
         })
     })
 
-    describe("#generateDocumentKeyFromKey()", () => {
+    describe("#generateDocumentKeyFromServerKey()", () => {
         it("should generate a document key from a server key", async () => {
 
-            const documentKey = await parityClient.generateDocumentKeyFromKey(ServerKey)
+            const documentKey = await parityClient.generateDocumentKeyFromServerKey(ServerKey)
             assert(documentKey)
         })
     })
@@ -50,7 +50,7 @@ describe("ParityClient", () => {
     describe("#encryptDocument()", () => {
         it("should encrypt an document", async () => {
 
-            const documentKey: GeneratedKey = await parityClient.generateDocumentKeyFromKey(ServerKey)
+            const documentKey: GeneratedKey = await parityClient.generateDocumentKeyFromServerKey(ServerKey)
             const encryptedDocument = await parityClient.encryptDocument(documentKey.encryptedKey, testDocument)
             assert(encryptedDocument)
         })

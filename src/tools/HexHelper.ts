@@ -6,5 +6,4 @@ export default class HexHelpler {
     public static add0xPrefix(key) {
         return key.startsWith("0x") ? key : "0x" + key
     }
-
 }

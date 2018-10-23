@@ -1,5 +1,8 @@
-import GeneratedKey from "./keys/GeneratedKey"
-import RetrievedKey from "./keys/RetrievedKey"
+import GeneratedKey from "./models/keys/GeneratedKey"
+import RetrievedKey from "./models/keys/RetrievedKey"
+import ParityClientConfig from "./models/ParityClientConfig"
+import SecretStoreClientConfig from "./models/SecretStoreClientConfig"
+import SecretStoreConfig from "./models/SecretStoreConfig"
 import ParityClient from "./ParityClient"
 import SecretStoreClient from "./SecretStoreClient"
 
@@ -8,21 +11,24 @@ export default class SecretStore {
     private partiyClient: ParityClient
     private secretStoreClient: SecretStoreClient
 
-    constructor(config: {
-        secretStoreUrl: string, parityUrl: string,
-        address: string, password: string, threshold?: number,
-    }) {
+    constructor(config: SecretStoreConfig) {
 
         this.partiyClient = new ParityClient({
-            url: config.parityUrl, address: config.address,
+            url: config.parityUri, address: config.address,
             password: config.password,
-        })
+        } as ParityClientConfig)
+
         this.secretStoreClient = new SecretStoreClient({
-            url: config.secretStoreUrl,
+            url: config.secretStoreUri,
             threshold: config.threshold,
-        })
+        } as SecretStoreClientConfig)
     }
 
+    /**
+     * Encrypts a document based in the given serverKeyId
+     * @param serverKeyId serverKeyId to use for the encryption
+     * @param document document to encrypt
+     */
     public async encryptDocument(serverKeyId: string, document: any): Promise<string> {
         const serverKey = await this.generateServerKey(serverKeyId)
 
@@ -38,6 +44,11 @@ export default class SecretStore {
         return encryptedDocument
     }
 
+    /**
+     * Decrypts a document based in the given serverKeyId
+     * @param serverKeyId serverKeyId to use for the decryption
+     * @param encryptedDocument encrypted document to decrypt
+     */
     public async decryptDocument(serverKeyId: string, encryptedDocument: string): Promise<any> {
 
         // get document key from secret store
@@ -50,6 +61,10 @@ export default class SecretStore {
         return decryptDocument
     }
 
+    /**
+     * Generates a server key based on the given serverKeyId
+     * @param serverKeyId serverKeyId to use for the generation
+     */
     private async generateServerKey(serverKeyId: string): Promise<string> {
 
         // sign server key id
@@ -63,12 +78,21 @@ export default class SecretStore {
         return serverKey
     }
 
+    /**
+     * Derives a document from the server key
+     * @param serverKey the serverKey generated with generateServerKey
+     */
     private async generateDocumentKey(serverKey: string): Promise<GeneratedKey> {
         // generate document key from server key
-        const documentKeys: GeneratedKey = await this.partiyClient.generateDocumentKeyFromKey(serverKey)
+        const documentKeys: GeneratedKey = await this.partiyClient.generateDocumentKeyFromServerKey(serverKey)
         return documentKeys
     }
 
+    /**
+     * Stores the document key in the secret store
+     * @param serverKeyId serverKeyId to use for the storage
+     * @param documentKeys document key generated with generateDocumentKeyFromServerKey
+     */
     private async storeDocumentKey(serverKeyId: string, documentKeys: GeneratedKey): Promise<boolean> {
 
         // sign server key id
@@ -81,6 +105,10 @@ export default class SecretStore {
         return true
     }
 
+    /**
+     * Retrieves the document key attached to the given serverKeyId from the secret store
+     * @param serverKeyId serverKeyId to retrieve the document key
+     */
     private async retrieveDocumentKey(serverKeyId: string): Promise<RetrievedKey> {
 
         // sign server key id

@@ -8,7 +8,7 @@
     "test:watch": "mocha -w --watch-extensions js,ts,json",
     "test:cover": "nyc mocha",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "start": "npm link @oceanprotocol/keeper-contracts && npm run build:watch",
+    "start": "npm run build:watch",
     "build": "npm run lint && tsc && npm run doc",
     "build:watch": "tsc -w",
     "doc": "typedoc --mode modules --out ./doc/ src/",
