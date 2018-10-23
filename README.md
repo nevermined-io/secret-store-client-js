@@ -1,15 +1,13 @@
 [![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
 
 # secret-store-client-js
-> Javascript implementation of the parity secret store for use in ocean.
+> JavaScript implementation of the parity secret store for use in ocean.
 
-[![npm](https://img.shields.io/npm/v/@oceanprotocol/secret-store-client-js.svg)](https://www.npmjs.com/package/@oceanprotocol/secret-store-client-js)
+[![npm](https://img.shields.io/npm/v/@oceanprotocol/secret-store-client.svg)](https://www.npmjs.com/package/@oceanprotocol/secret-store-client)
 [![Travis (.com)](https://img.shields.io/travis/com/oceanprotocol/secret-store-client-js.svg)](https://travis-ci.com/oceanprotocol/secret-store-client-js)
 [![GitHub contributors](https://img.shields.io/github/contributors/oceanprotocol/secret-store-client-js.svg)](https://github.com/oceanprotocol/secret-store-client-js/graphs/contributors)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8508313231b44b0997ec84898cd6f9db)](https://app.codacy.com/app/ocean-protocol/secret-store-client-js?utm_source=github.com&utm_medium=referral&utm_content=oceanprotocol/secret-store-client-js&utm_campaign=Badge_Grade_Settings)
-[![js oceanprotocol](https://img.shields.io/badge/js-oceanprotocol-7b1173.svg)](https://github.com/oceanprotocol/eslint-config-oceanprotocol) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3a494d608ad9476b873b79c422fb83eb)](https://www.codacy.com/app/ocean-protocol/secret-store-client-js?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oceanprotocol/secret-store-client-js&amp;utm_campaign=Badge_Grade)
 [![Greenkeeper badge](https://badges.greenkeeper.io/oceanprotocol/secret-store-client-js.svg)](https://greenkeeper.io/)
-
 ---
 
 ## Table of Contents
