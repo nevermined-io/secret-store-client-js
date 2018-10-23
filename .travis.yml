@@ -13,13 +13,12 @@ matrix:
   fast_finish: true
 
 before_install:
+- chmod +x ./parity/parity.sh && ./parity/parity.sh &
 - npm install -g npm
 - npm install -g release-it greenkeeper-lockfile
 
 before_script:
 - greenkeeper-lockfile-update
-- chmod +x ./parity/parity.sh && ./parity/parity.sh &
-- sleep 15
 
 script:
 - npm test -- --timeout 10000
