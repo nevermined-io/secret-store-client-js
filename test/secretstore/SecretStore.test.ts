@@ -6,6 +6,7 @@ import * as PublisherAccount from "./secrets/PublisherAccount.json"
 
 const parityUri = "http://localhost:9545"
 const ssUrl = "https://secret-store.dev-ocean.com"
+const testThreshold = 2
 
 const testDocument = {
     so: "ocean",
@@ -18,7 +19,7 @@ const secretStore: SecretStore = new SecretStore({
     secretStoreUri: ssUrl, parityUri,
     address: PublisherAccount.address,
     password: PublisherAccount.password,
-    threshold: 2,
+    threshold: testThreshold,
 })
 
 function generateRandomId(): string {
@@ -59,16 +60,23 @@ describe("SecretStore", () => {
 
             const serverKeyId = generateRandomId()
 
-            const encryptedDocument: string = await secretStore.encryptDocument(serverKeyId, testDocument)
-            assert(encryptedDocument)
-
-            const newSecretStore: SecretStore = new SecretStore({
+            const encryptSecretStore: SecretStore = new SecretStore({
                 secretStoreUri: ssUrl, parityUri,
-                address: ConsumerAccount.address, password: ConsumerAccount.password,
-                threshold: 2,
+                address: PublisherAccount.address,
+                password: PublisherAccount.password,
+                threshold: testThreshold,
             })
 
-            const decryptedDocument: any = await newSecretStore.decryptDocument(serverKeyId, encryptedDocument)
+            const encryptedDocument: string = await encryptSecretStore.encryptDocument(serverKeyId, testDocument)
+            assert(encryptedDocument)
+
+            const decrypSecretStore: SecretStore = new SecretStore({
+                secretStoreUri: ssUrl, parityUri,
+                address: ConsumerAccount.address, password: ConsumerAccount.password,
+                threshold: testThreshold,
+            })
+
+            const decryptedDocument: any = await decrypSecretStore.decryptDocument(serverKeyId, encryptedDocument)
             assert(decryptedDocument)
 
             assert(testDocument.soWow === decryptedDocument.soWow)
