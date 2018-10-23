@@ -13,7 +13,7 @@ matrix:
   fast_finish: true
 
 before_install:
-- chmod +x ./parity/parity.sh && ./parity/parity.sh &
+- chmod +x ./parity/parity.sh && ./parity/parity.sh
 - npm install -g npm
 - npm install -g release-it greenkeeper-lockfile
 
