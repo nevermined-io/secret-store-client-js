@@ -50,6 +50,7 @@ describe("SecretStore", () => {
             assert(decryptedDocument)
 
             assert(testDocument.soWow === decryptedDocument.soWow)
+            assert(testDocument.i === decryptedDocument.i)
         })
     })
 })
