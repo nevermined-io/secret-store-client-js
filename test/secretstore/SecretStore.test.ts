@@ -1,7 +1,8 @@
 import BigNumber from "bignumber.js"
 import {assert} from "chai"
 import SecretStore from "../../src/SecretStore"
-import * as testAccount from "./secrets/testAccount.json"
+import * as ConsumerAccount from "./secrets/ConsumerAccount.json"
+import * as PublisherAccount from "./secrets/PublisherAccount.json"
 
 const parityUri = "http://localhost:9545"
 const ssUrl = "https://secret-store.dev-ocean.com"
@@ -15,7 +16,8 @@ const testDocument = {
 
 const secretStore: SecretStore = new SecretStore({
     secretStoreUri: ssUrl, parityUri,
-    address: testAccount.address, password: testAccount.password,
+    address: PublisherAccount.address,
+    password: PublisherAccount.password,
     threshold: 2,
 })
 
@@ -47,6 +49,26 @@ describe("SecretStore", () => {
             assert(encryptedDocument)
 
             const decryptedDocument: any = await secretStore.decryptDocument(serverKeyId, encryptedDocument)
+            assert(decryptedDocument)
+
+            assert(testDocument.soWow === decryptedDocument.soWow)
+            assert(testDocument.i === decryptedDocument.i)
+        })
+
+        it("should decrypt an document encrypted by someone else", async () => {
+
+            const serverKeyId = generateRandomId()
+
+            const encryptedDocument: string = await secretStore.encryptDocument(serverKeyId, testDocument)
+            assert(encryptedDocument)
+
+            const newSecretStore: SecretStore = new SecretStore({
+                secretStoreUri: ssUrl, parityUri,
+                address: ConsumerAccount.address, password: ConsumerAccount.password,
+                threshold: 2,
+            })
+
+            const decryptedDocument: any = await newSecretStore.decryptDocument(serverKeyId, encryptedDocument)
             assert(decryptedDocument)
 
             assert(testDocument.soWow === decryptedDocument.soWow)

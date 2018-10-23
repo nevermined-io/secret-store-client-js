@@ -3,9 +3,9 @@ import {assert} from "chai"
 import GeneratedKey from "../../src/models/keys/GeneratedKey"
 import ParityClient from "../../src/ParityClient"
 import * as GeneratedKeyMaterial from "./secrets/GeneratedKey.json"
+import * as PublisherAccount from "./secrets/PublisherAccount.json"
 import * as RetrievedKeyMaterial from "./secrets/RetrievedKey.json"
 import * as ServerKey from "./secrets/ServerKey.json"
-import * as testAccount from "./secrets/testAccount.json"
 
 const parityUri = "http://localhost:9545"
 
@@ -16,8 +16,8 @@ const testDocument = {
 
 const parityClient: ParityClient = new ParityClient({
     url: parityUri,
-    address: testAccount.address,
-    password: testAccount.password,
+    address: PublisherAccount.address,
+    password: PublisherAccount.password,
 })
 
 function generateRandomId(): string {
