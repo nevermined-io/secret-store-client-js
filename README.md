@@ -7,7 +7,6 @@
 [![Travis (.com)](https://img.shields.io/travis/com/oceanprotocol/secret-store-client-js.svg)](https://travis-ci.com/oceanprotocol/secret-store-client-js)
 [![GitHub contributors](https://img.shields.io/github/contributors/oceanprotocol/secret-store-client-js.svg)](https://github.com/oceanprotocol/secret-store-client-js/graphs/contributors)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3a494d608ad9476b873b79c422fb83eb)](https://www.codacy.com/app/ocean-protocol/secret-store-client-js?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oceanprotocol/secret-store-client-js&amp;utm_campaign=Badge_Grade)
-[![Greenkeeper badge](https://badges.greenkeeper.io/oceanprotocol/secret-store-client-js.svg)](https://greenkeeper.io/)
 ---
 
 ## Table of Contents
