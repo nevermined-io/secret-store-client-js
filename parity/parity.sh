@@ -2,7 +2,7 @@
 
 cd ./parity/
 
-docker run -d \
+docker run -it \
     --volume $(pwd)/keys/:/root/.local/share/io.parity.ethereum/keys/DevelopmentChain \
     --name secretstore-parity \
     -p 9545:8545 \
