@@ -15,6 +15,7 @@
 ## Table of Contents
 
   - [Get started](#get-started)
+    - [Usage](#usage)
   - [Development](#development)
     - [Testing](#testing)
     - [Documentation](#documentation)
@@ -30,6 +31,59 @@ Start by adding the package to your dependencies:
 
 ```bash
 npm i @oceanprotocol/secret-store-client
+```
+
+### Usage
+
+To get a new instance of SecretStore do the following:
+
+```ecmascript 6
+import SecretStore from "@oceanprotocol/secret-store-client"
+
+const secretStore = new SecretStore({
+    secretStoreUri: "https://secret-store.dev-ocean.com", 
+    parityUri: "http://localhost:9545",
+    address: "0xed243adfb84a6626eba46178ccb567481c6e655d",
+    password: "unittest",
+    threshold: 2,
+})
+```
+
+To encrypt a document do the following:
+
+```ecmascript 6
+const testDocument = {
+    so: "ocean",
+    soWow: true,
+}
+
+// generate random 64 digit numerical id
+const serverKeyId = generateRandomId()
+/* this will:
+ * - sign the given serverKeyId with the private key from the given address (unlocked with given password)
+ * - generate a server key based in the given serverKeyId
+ * - generate a document key derived from the server key
+ * - store the document key in secret store
+ * - encrypt the document and return it
+ */
+const encryptedDocument = await secretStore.encryptDocument(serverKeyId, testDocument)
+```
+
+To decrypt a document do the following:
+
+```ecmascript 6
+/* this will:
+ * - sign the given serverKeyId with the private key from the given address (unlocked with given password)
+ * - retrieve the document key from secret store
+ * - decrypt the document and return it
+ */
+const decryptedDocument = await secretStore.decryptDocument(serverKeyId, encryptedDocument)
+```
+
+Now both documents are the same:
+
+```ecmascript 6
+assert(testDocument.so === decryptedDocument.so)
 ```
 
 ## Development
