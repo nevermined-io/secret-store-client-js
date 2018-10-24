@@ -1,6 +1,6 @@
-import BigNumber from "bignumber.js"
 import {assert} from "chai"
 import SecretStore from "../../src/SecretStore"
+import {generateRandomId} from "../generateRandomId"
 import * as ConsumerAccount from "./secrets/ConsumerAccount.json"
 import * as PublisherAccount from "./secrets/PublisherAccount.json"
 
@@ -21,13 +21,6 @@ const secretStore: SecretStore = new SecretStore({
     password: PublisherAccount.password,
     threshold: testThreshold,
 })
-
-function generateRandomId(): string {
-    const id: string = BigNumber.random(64).toString().replace("0.", "")
-
-    // sometimes it only generates 63 digits
-    return id.length === 63 ? id + "0" : id
-}
 
 describe("SecretStore", () => {
 
