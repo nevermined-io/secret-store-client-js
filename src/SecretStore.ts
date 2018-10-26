@@ -8,12 +8,12 @@ import SecretStoreClient from "./SecretStoreClient"
 
 export default class SecretStore {
 
-    private partiyClient: ParityClient
+    private parityClient: ParityClient
     private secretStoreClient: SecretStoreClient
 
     constructor(config: SecretStoreConfig) {
 
-        this.partiyClient = new ParityClient({
+        this.parityClient = new ParityClient({
             url: config.parityUri, address: config.address,
             password: config.password,
         } as ParityClientConfig)
@@ -40,7 +40,7 @@ export default class SecretStore {
 
         // encrypt document
         const encryptedDocument =
-            await this.partiyClient.encryptDocument(documentKey.encryptedKey, document)
+            await this.parityClient.encryptDocument(documentKey.encryptedKey, document)
         return encryptedDocument
     }
 
@@ -54,7 +54,7 @@ export default class SecretStore {
         // get document key from secret store
         const documentKey: RetrievedKey = await this.retrieveDocumentKey(serverKeyId)
 
-        const decryptDocument: any = await this.partiyClient.decryptDocument(
+        const decryptDocument: any = await this.parityClient.decryptDocument(
             documentKey.decryptedSecret, documentKey.commonPoint,
             documentKey.decryptShadows, encryptedDocument)
 
@@ -68,7 +68,7 @@ export default class SecretStore {
     private async generateServerKey(serverKeyId: string): Promise<string> {
 
         // sign server key id
-        const serverKeyIdSig = await this.partiyClient.signKeyId(serverKeyId)
+        const serverKeyIdSig = await this.parityClient.signKeyId(serverKeyId)
 
         // Logger.log("serverKeyId:", serverKeyId, "serverKeyIdSig:", serverKeyIdSig)
 
@@ -84,7 +84,7 @@ export default class SecretStore {
      */
     private async generateDocumentKey(serverKey: string): Promise<GeneratedKey> {
         // generate document key from server key
-        const documentKeys: GeneratedKey = await this.partiyClient.generateDocumentKeyFromServerKey(serverKey)
+        const documentKeys: GeneratedKey = await this.parityClient.generateDocumentKeyFromServerKey(serverKey)
         return documentKeys
     }
 
@@ -96,7 +96,7 @@ export default class SecretStore {
     private async storeDocumentKey(serverKeyId: string, documentKeys: GeneratedKey): Promise<boolean> {
 
         // sign server key id
-        const serverKeyIdSig = await this.partiyClient.signKeyId(serverKeyId)
+        const serverKeyIdSig = await this.parityClient.signKeyId(serverKeyId)
 
         // store document key in secret store
         await this.secretStoreClient.storeDocumentKey(serverKeyId, serverKeyIdSig,
@@ -112,7 +112,7 @@ export default class SecretStore {
     private async retrieveDocumentKey(serverKeyId: string): Promise<RetrievedKey> {
 
         // sign server key id
-        const serverKeyIdSig = await this.partiyClient.signKeyId(serverKeyId)
+        const serverKeyIdSig = await this.parityClient.signKeyId(serverKeyId)
 
         // Logger.log("serverKeyId:", serverKeyId, "serverKeyIdSig:", serverKeyIdSig)
 
