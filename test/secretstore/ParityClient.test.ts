@@ -1,7 +1,7 @@
 import {assert} from "chai"
 import GeneratedKey from "../../src/models/keys/GeneratedKey"
 import ParityClient from "../../src/ParityClient"
-import {generateRandomId} from "../generateRandomId"
+import {generateRandomId} from "./generateRandomId"
 import * as GeneratedKeyMaterial from "./secrets/GeneratedKey.json"
 import * as PublisherAccount from "./secrets/PublisherAccount.json"
 import * as RetrievedKeyMaterial from "./secrets/RetrievedKey.json"

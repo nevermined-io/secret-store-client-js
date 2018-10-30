@@ -1,6 +1,6 @@
 import {assert} from "chai"
 import SecretStore from "../../src/SecretStore"
-import {generateRandomId} from "../generateRandomId"
+import {generateRandomId} from "./generateRandomId"
 import * as ConsumerAccount from "./secrets/ConsumerAccount.json"
 import * as PublisherAccount from "./secrets/PublisherAccount.json"
 
