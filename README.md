@@ -1,7 +1,7 @@
 [![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
 
 # secret-store-client-js
-> JavaScript implementation of the parity secret store for use in ocean.
+> 🔑JavaScript implementation of the parity secret store for use in ocean.
 
 [![npm](https://img.shields.io/npm/v/@oceanprotocol/secret-store-client.svg)](https://www.npmjs.com/package/@oceanprotocol/secret-store-client)
 [![Travis (.com)](https://img.shields.io/travis/com/oceanprotocol/secret-store-client-js.svg)](https://travis-ci.com/oceanprotocol/secret-store-client-js)
