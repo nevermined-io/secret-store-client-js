@@ -23,7 +23,7 @@ before_script:
 - greenkeeper-lockfile-update
 
 script:
-- npm test -- --timeout 10000
+- npm run test:cover -- --timeout 10000
 - npm run build
 
 after_script:

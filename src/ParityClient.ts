@@ -1,6 +1,4 @@
-import * as jayson from "jayson"
-import {Client} from "jayson"
-import {URL} from "url"
+import fetch from "node-fetch"
 import GeneratedKey from "./models/keys/GeneratedKey"
 import ParityClientConfig from "./models/ParityClientConfig"
 import HexHelper from "./tools/HexHelper"
@@ -9,12 +7,12 @@ export default class ParityClient {
 
     private address: string
     private password: string
-    private rpcClient: Client
+    private url: string
 
     constructor(config: ParityClientConfig) {
         this.password = config.password
         this.address = config.address
-        this.rpcClient = jayson.Client.http(new URL(config.url))
+        this.url = config.url
     }
 
     /**
@@ -22,7 +20,7 @@ export default class ParityClient {
      * @param keyId the keyId to sign
      */
     public async signKeyId(keyId): Promise<string> {
-        return this.sendJsonRpcRequest(this.rpcClient,
+        return this.sendJsonRpcRequest(
             "secretstore_signRawHash",
             [this.address, this.password, HexHelper.add0xPrefix(keyId)])
             .then((result: string) => {
@@ -35,7 +33,7 @@ export default class ParityClient {
      * @param serverKey the server key to derive from
      */
     public async generateDocumentKeyFromServerKey(serverKey: string): Promise<any> {
-        return this.sendJsonRpcRequest(this.rpcClient,
+        return this.sendJsonRpcRequest(
             "secretstore_generateDocumentKey",
             [this.address, this.password, serverKey])
             .then((result: any) => {
@@ -57,7 +55,7 @@ export default class ParityClient {
         // `document` must be encoded in hex when sent to encryption
         const documentString = JSON.stringify(document)
         const documentHexed = HexHelper.add0xPrefix(new Buffer(documentString).toString("hex"))
-        return this.sendJsonRpcRequest(this.rpcClient,
+        return this.sendJsonRpcRequest(
             "secretstore_encrypt",
             [this.address, this.password, encryptedKey, documentHexed])
             .then((result: string) => {
@@ -74,7 +72,7 @@ export default class ParityClient {
      */
     public decryptDocument(decryptedSecret: string, commonPoint: string,
                            decryptShadows: string[], encryptedDocument: string): Promise<any> {
-        return this.sendJsonRpcRequest(this.rpcClient,
+        return this.sendJsonRpcRequest(
             "secretstore_shadowDecrypt",
             [this.address, this.password, decryptedSecret,
                 commonPoint, decryptShadows, encryptedDocument])
@@ -84,16 +82,31 @@ export default class ParityClient {
             })
     }
 
-    private sendJsonRpcRequest(rpcClient: Client, methodName: string, paramsList: any[]) {
-        return new Promise((resolve, reject) => {
-            rpcClient.request(methodName, paramsList,
-                (err, response) => {
-                    const error = err || response.error
-                    if (error) {
-                        return reject(error)
-                    }
-                    return resolve(response.result)
-                })
+    private sendJsonRpcRequest(methodName: string, paramsList: any[]) {
+
+        return fetch(this.url, {
+            method: "POST",
+            body: JSON.stringify({
+                jsonrpc: "2.0",
+                method: methodName,
+                params: paramsList,
+                id: 1,
+            }),
+            headers: {
+                "Content-type": "application/json",
+            },
         })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw new Error(`Calling method "${methodName}" on parity client failed with ${response.statusText}`)
+            })
+            .then((result) => {
+                return result.result
+            })
+            .catch((err) => {
+                throw new Error(`Calling method "${methodName}" on parity client failed`)
+            })
     }
 }
