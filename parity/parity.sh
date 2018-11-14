@@ -11,4 +11,5 @@ docker run -it -d \
     --light \
     --jsonrpc-interface 0.0.0.0 \
     --jsonrpc-apis secretstore \
+    --jsonrpc-cors all \
     --keys-path /home/parity/.local/keys
