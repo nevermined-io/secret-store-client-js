@@ -1,6 +1,6 @@
 {
   "name": "@oceanprotocol/secret-store-client",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "description": "JavaScript secret store client for Ocean Protocol",
   "main": "dist/SecretStore.js",
   "scripts": {
@@ -46,7 +46,7 @@
   },
   "homepage": "https://github.com/oceanprotocol/secret-store-client-js#readme",
   "dependencies": {
-    "node-fetch": "^2.2.0"
+    "node-fetch": "^2.3.0"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
@@ -57,6 +57,6 @@
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "typedoc": "^0.13.0",
-    "typescript": "^3.1.4"
+    "typescript": "^3.1.6"
   }
 }

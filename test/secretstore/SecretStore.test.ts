@@ -34,7 +34,7 @@ describe("SecretStore", () => {
         })
     })
 
-    describe("#decryptDocument()", () => {
+    xdescribe("#decryptDocument()", () => {
         it("should decrypt an document", async () => {
 
             const serverKeyId = generateRandomId()

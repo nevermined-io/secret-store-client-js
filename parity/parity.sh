@@ -8,6 +8,8 @@ docker run -it -d \
     -p 9545:8545 \
     parity/parity:stable \
     --chain dev \
+    --light \
     --jsonrpc-interface 0.0.0.0 \
     --jsonrpc-apis secretstore \
+    --jsonrpc-cors all \
     --keys-path /home/parity/.local/keys

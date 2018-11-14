@@ -31,3 +31,11 @@ after_script:
 
 notifications:
   email: false
+
+deploy:
+- provider: npm
+  email: "devops@oceanprotocol.com"
+  api_key: ${NPM_TOKEN}
+  skip_cleanup: true
+  on:
+    tags: true

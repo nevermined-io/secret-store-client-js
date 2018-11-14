@@ -29,6 +29,7 @@ export default class SecretStoreClient {
 
         const result = await fetch(url, {
             method: "POST",
+            mode: "cors",
         })
             .then((response) => {
                 if (response.ok) {
@@ -64,6 +65,7 @@ export default class SecretStoreClient {
 
         const result = await fetch(url, {
             method: "POST",
+            mode: "cors",
         })
             .then((response) => {
                 if (response.ok && response.status === 200) {
