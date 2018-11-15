@@ -5,8 +5,8 @@ import * as ConsumerAccount from "./secrets/ConsumerAccount.json"
 import * as PublisherAccount from "./secrets/PublisherAccount.json"
 
 const parityUri = "http://localhost:9545"
-const ssUrl = "https://secret-store.dev-ocean.com"
-const testThreshold = 2
+const ssUrl = "http://localhost:12001"
+const testThreshold = 0
 
 const testDocument = {
     so: "ocean",
@@ -34,7 +34,7 @@ describe("SecretStore", () => {
         })
     })
 
-    xdescribe("#decryptDocument()", () => {
+    describe("#decryptDocument()", () => {
         it("should decrypt an document", async () => {
 
             const serverKeyId = generateRandomId()
