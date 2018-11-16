@@ -87,16 +87,16 @@ export default class ParityClient {
         return fetch(this.url, {
             method: "POST",
             mode: "cors",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
                 jsonrpc: "2.0",
                 method: methodName,
                 params: paramsList,
                 id: 1,
             }),
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
         })
             .then((response) => {
                 if (response.ok) {

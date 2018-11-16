@@ -30,6 +30,10 @@ export default class SecretStoreClient {
         const result = await fetch(url, {
             method: "POST",
             mode: "cors",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
         })
             .then((response) => {
                 if (response.ok) {
@@ -66,6 +70,10 @@ export default class SecretStoreClient {
         const result = await fetch(url, {
             method: "POST",
             mode: "cors",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
         })
             .then((response) => {
                 if (response.ok && response.status === 200) {
