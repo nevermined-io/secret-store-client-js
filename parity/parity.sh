@@ -2,7 +2,7 @@
 
 cd ./parity/
 
-docker network create --subnet=172.15.0.1/24 ocean_secretstore
+docker network create --subnet=172.16.0.1/24 ocean_secretstore
 
 docker run -it -d \
     --net ocean_secretstore \
@@ -19,7 +19,7 @@ docker run -it -d \
 
 docker run -it -d \
     --net ocean_secretstore \
-    --ip 172.15.0.13 \
+    --ip 172.16.0.13 \
     --entrypoint=/opt/parity/parity \
     -v $(pwd)/secret_store/config/:/etc/parity/secretstore/:ro \
     -v $(pwd)/secret_store/keys/:/parity_data/keys/ocean-network/:ro \
