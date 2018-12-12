@@ -105,10 +105,13 @@ export default class ParityClient {
                 throw new Error(`Calling method "${methodName}" on parity client failed with ${response.statusText}`)
             })
             .then((result) => {
-                return result.result
+                if (result.result) {
+                    return result.result
+                }
+                throw new Error(`Parity node returned an error ${result.error.message} ${result.error.data}`)
             })
             .catch((err) => {
-                throw new Error(`Calling method "${methodName}" on parity client failed`)
+                throw new Error(`Calling method "${methodName}" on parity client failed. ${err}`)
             })
     }
 }
