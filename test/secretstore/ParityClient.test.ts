@@ -63,5 +63,34 @@ describe("ParityClient", () => {
 
             assert(testDocument.soWow === decryptedDocument.soWow)
         })
+
+        it("should decrypt an string", async () => {
+
+            const testString = "so wow"
+            const encryptedString: string =
+                await parityClient.encryptDocument(GeneratedKeyMaterial.encryptedKey, testString)
+            assert(encryptedString)
+
+            const decryptedString: any = await parityClient.decryptDocument(
+                RetrievedKeyMaterial.decryptedSecret, RetrievedKeyMaterial.commonPoint,
+                RetrievedKeyMaterial.decryptShadows, encryptedString)
+            assert(decryptedString)
+
+            assert(testString === decryptedString)
+        })
+
+        it("should decrypt an empty string", async () => {
+
+            const testString = ""
+            const encryptedString: string =
+                await parityClient.encryptDocument(GeneratedKeyMaterial.encryptedKey, testString)
+            assert(encryptedString)
+
+            const decryptedString: any = await parityClient.decryptDocument(
+                RetrievedKeyMaterial.decryptedSecret, RetrievedKeyMaterial.commonPoint,
+                RetrievedKeyMaterial.decryptShadows, encryptedString)
+
+            assert(testString === decryptedString)
+        })
     })
 })

@@ -53,7 +53,7 @@ export default class ParityClient {
      */
     public encryptDocument(encryptedKey: string, document: any): Promise<string> {
         // `document` must be encoded in hex when sent to encryption
-        const documentString = JSON.stringify(document)
+        const documentString = JSON.stringify(document, null, 2)
         const documentHexed = HexHelper.add0xPrefix(Buffer.from(documentString).toString("hex"))
         return this.sendJsonRpcRequest(
             "secretstore_encrypt",
@@ -77,8 +77,17 @@ export default class ParityClient {
             [this.address, this.password, decryptedSecret,
                 commonPoint, decryptShadows, encryptedDocument])
             .then((result: string) => {
-                const documentString = Buffer.from(HexHelper.removeLeading0xPrefix(result), "hex").toString("utf8")
-                return JSON.parse(documentString)
+                let documentString: string = Buffer
+                    .from(HexHelper.removeLeading0xPrefix(result), "hex")
+                    .toString("utf8")
+
+                try {
+                    documentString = JSON.parse(documentString)
+                } catch (err) {
+                    // err
+                }
+
+                return documentString
             })
     }
 
