@@ -83,8 +83,8 @@ export default class ParityClient {
 
                 try {
                     documentString = JSON.parse(documentString)
-                } catch (err) {
-                    // err
+                } catch {
+                    // just a probe
                 }
 
                 return documentString
