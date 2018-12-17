@@ -15,7 +15,10 @@ matrix:
   fast_finish: true
 
 before_install:
-- chmod +x ./parity/parity.sh && ./parity/parity.sh
+- git clone https://github.com/oceanprotocol/barge
+- cd barge
+- bash -x start_ocean.sh --latest --no-brizo --no-pleuston --no-aquarius --local-spree-node 2>&1 > start_ocean.log &
+- cd ../
 - npm install -g npm
 - npm install -g release-it greenkeeper-lockfile
 
