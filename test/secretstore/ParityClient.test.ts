@@ -7,7 +7,7 @@ import * as PublisherAccount from "./secrets/PublisherAccount.json"
 import * as RetrievedKeyMaterial from "./secrets/RetrievedKey.json"
 import * as ServerKey from "./secrets/ServerKey.json"
 
-const parityUri = "http://localhost:9545"
+const parityUri = "http://localhost:8545"
 
 const testDocument = {
     so: "secure",

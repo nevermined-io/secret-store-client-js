@@ -4,7 +4,7 @@ import {generateRandomId} from "./generateRandomId"
 import * as ConsumerAccount from "./secrets/ConsumerAccount.json"
 import * as PublisherAccount from "./secrets/PublisherAccount.json"
 
-const parityUri = "http://localhost:9545"
+const parityUri = "http://localhost:8545"
 const ssUrl = "http://localhost:12001"
 const testThreshold = 0
 

@@ -45,7 +45,7 @@ import SecretStore from "@oceanprotocol/secret-store-client"
 
 const secretStore = new SecretStore({
     secretStoreUri: "https://secret-store.dev-ocean.com", 
-    parityUri: "http://localhost:9545",
+    parityUri: "http://localhost:8545",
     address: "0xed243adfb84a6626eba46178ccb567481c6e655d",
     password: "unittest",
     threshold: 2,
