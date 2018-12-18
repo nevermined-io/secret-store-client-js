@@ -46,6 +46,7 @@ describe("ParityClient", () => {
             const documentKey: GeneratedKey = await parityClient.generateDocumentKeyFromServerKey(ServerKey)
             const encryptedDocument = await parityClient.encryptDocument(documentKey.encryptedKey, testDocument)
             assert(encryptedDocument)
+            console.log(encryptedDocument)
         })
     })
 
