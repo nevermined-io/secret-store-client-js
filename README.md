@@ -45,7 +45,7 @@ import SecretStore from "@oceanprotocol/secret-store-client"
 
 const secretStore = new SecretStore({
     secretStoreUri: "https://secret-store.dev-ocean.com", 
-    parityUri: "http://localhost:9545",
+    parityUri: "http://localhost:8545",
     address: "0xed243adfb84a6626eba46178ccb567481c6e655d",
     password: "unittest",
     threshold: 2,
@@ -100,12 +100,12 @@ npm start
 
 ### Testing
 
-Testing needs a local instance of parity installed. You get one docker instance of it by calling:
+Testing needs a local instance of parity client and secret store. You can spin up these services using [oceanprotocol/barge](https://github.com/oceanprotocol/barge):
 ```bash
-chmod +x ./parity/parity.sh && ./parity/parity.sh
+git clone https://github.com/oceanprotocol/barge
+cd barge
+bash -x start_ocean.sh --latest --no-brizo --no-pleuston --local-spree-node 2>&1 > start_ocean.log &
 ```
-
-This will create docker container named `secretstore-parity`
 
 To start test you need to:
 
