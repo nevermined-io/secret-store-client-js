@@ -7,6 +7,7 @@
     "test": "mocha",
     "test:watch": "mocha -w --watch-extensions js,ts,json",
     "test:cover": "nyc mocha",
+    "report-coverage": "cat ./coverage/lcov.info | codacy-coverage --token 65ea02a0d2104b6bbcb793fdae2aa71c",
     "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
     "start": "npm run build:watch",
     "build": "npm run lint && tsc && npm run doc",
@@ -29,6 +30,7 @@
     ],
     "reporter": [
       "text-summary",
+      "lcov",
       "html"
     ],
     "sourceMap": true,

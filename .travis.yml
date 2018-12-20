@@ -1,45 +1,46 @@
 language: node_js
 node_js:
-- "10"
+  - "10"
 
 sudo: required
 
 services:
-- docker
+  - docker
 
 cache:
   directories:
-  - node_modules
+    - node_modules
 
 matrix:
   fast_finish: true
 
 before_install:
-- git clone https://github.com/oceanprotocol/barge
-- cd barge
-- bash -x start_ocean.sh --latest --no-brizo --no-pleuston --no-aquarius --local-spree-node 2>&1 > start_ocean.log &
-- sleep 30
-- cd ../
-- npm install -g npm
-- npm install -g release-it greenkeeper-lockfile
+  - git clone https://github.com/oceanprotocol/barge
+  - cd barge
+  - bash -x start_ocean.sh --latest --no-brizo --no-pleuston --no-aquarius --local-spree-node 2>&1 > start_ocean.log &
+  - sleep 30
+  - cd ../
+  - npm install -g npm
+  - npm install -g release-it greenkeeper-lockfile codacy-coverage
 
 before_script:
-- greenkeeper-lockfile-update
+  - greenkeeper-lockfile-update
 
 script:
-- npm run test:cover -- --timeout 10000
-- npm run build
+  - npm run test:cover -- --timeout 10000
+  - npm run report-coverage
+  - npm run build
 
 after_script:
-- greenkeeper-lockfile-upload
+  - greenkeeper-lockfile-upload
 
 notifications:
   email: false
 
 deploy:
-- provider: npm
-  email: "devops@oceanprotocol.com"
-  api_key: ${NPM_TOKEN}
-  skip_cleanup: true
-  on:
-    tags: true
+  - provider: npm
+    email: "devops@oceanprotocol.com"
+    api_key: ${NPM_TOKEN}
+    skip_cleanup: true
+    on:
+      tags: true
