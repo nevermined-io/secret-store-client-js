@@ -17,7 +17,7 @@ matrix:
 before_install:
   - git clone https://github.com/oceanprotocol/barge
   - cd barge
-  - bash -x start_ocean.sh --latest --no-brizo --no-pleuston --no-aquarius --local-spree-node 2>&1 > start_ocean.log &
+  - bash -x start_ocean.sh --stable --no-brizo --no-pleuston --no-aquarius --local-spree-node 2>&1 > start_ocean.log &
   - sleep 30
   - cd ../
   - npm install -g npm
