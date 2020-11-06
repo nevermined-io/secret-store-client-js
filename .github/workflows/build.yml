@@ -20,7 +20,7 @@ jobs:
       run: |
         docker login -u ${{ secrets.NEVERMINED_DOCKER_USERNAME }} -p ${{ secrets.NEVERMINED_DOCKER_TOKEN}}
         git clone https://github.com/nevermined-io/tools
-        cd nevermined-tools
+        cd tools
         rm -rf "${HOME}/.nevermined/nevermined-contracts/artifacts"
         ./start_nevermined.sh --latest --no-commons --no-metadata --no-gateway --no-faucet --no-elastic --no-acl-contract &
         cd ..
