@@ -1,0 +1,32 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install dependencies
+      run: |
+        npm i
+        npm install -g npm
+    - name: Run tools (network)
+      run: |
+        docker login -u ${{ secrets.NEVERMINED_DOCKER_USERNAME }} -p ${{ secrets.NEVERMINED_DOCKER_TOKEN}}
+        git clone https://github.com/nevermined-io/tools
+        cd tools
+        rm -rf "${HOME}/.nevermined/nevermined-contracts/artifacts"
+        ./start_nevermined.sh --latest --no-commons --no-metadata --no-gateway --no-faucet --no-elastic --no-acl-contract &
+        # wait for secret store to be up and running
+        ./scripts/wait_for_service.sh localhost:9545
+        cd ..
+    - name: Run linters
+      run: npm run lint
+    - name: Run unit tests
+      run: npm run test

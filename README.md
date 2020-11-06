@@ -1,13 +1,10 @@
-[![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
+[![banner](https://raw.githubusercontent.com/nevermined-io/assets/main/images/logo/banner_logo.png)](https://nevermined.io)
 
-# secret-store-client-js
-> 🔑JavaScript implementation of the parity secret store for use in ocean.
+# Nevermined Secret Store Client
+> 🔑JavaScript implementation of the parity secret store for use in Nevermined.
 
-[![npm](https://img.shields.io/npm/v/@oceanprotocol/secret-store-client.svg)](https://www.npmjs.com/package/@oceanprotocol/secret-store-client)
-[![Travis (.com)](https://img.shields.io/travis/com/oceanprotocol/secret-store-client-js.svg)](https://travis-ci.com/oceanprotocol/secret-store-client-js)
-[![GitHub contributors](https://img.shields.io/github/contributors/oceanprotocol/secret-store-client-js.svg)](https://github.com/oceanprotocol/secret-store-client-js/graphs/contributors)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3a494d608ad9476b873b79c422fb83eb)](https://www.codacy.com/app/ocean-protocol/secret-store-client-js?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oceanprotocol/secret-store-client-js&amp;utm_campaign=Badge_Grade)
-
+![Build](https://github.com/nevermined-io/secret-store-client-js/workflows/Build/badge.svg)
+![NPM Package](https://github.com/nevermined-io/secret-store-client-js/workflows/NPM%20Release/badge.svg)
 ---
 
 ## Table of Contents
@@ -33,7 +30,7 @@ This client abstracts the interface of the [Parity Secret Store](https://wiki.pa
 Start by adding the package to your dependencies:
 
 ```bash
-npm i @oceanprotocol/secret-store-client
+npm i @nevermined-io/secret-store-client
 ```
 
 ### Usage
@@ -41,10 +38,10 @@ npm i @oceanprotocol/secret-store-client
 To get a new instance of SecretStore do the following:
 
 ```ecmascript 6
-import SecretStore from "@oceanprotocol/secret-store-client"
+import SecretStore from "@nevermined-io/secret-store-client"
 
 const secretStore = new SecretStore({
-    secretStoreUri: "https://secret-store.dev-ocean.com", 
+    secretStoreUri: "https://secret-store.dev-nevermined.com", 
     parityUri: "http://localhost:8545",
     address: "0xed243adfb84a6626eba46178ccb567481c6e655d",
     password: "unittest",
@@ -56,7 +53,7 @@ To encrypt a document do the following:
 
 ```ecmascript 6
 const testDocument = {
-    so: "ocean",
+    so: "nevermined",
     soWow: true,
 }
 
@@ -100,11 +97,11 @@ npm start
 
 ### Testing
 
-Testing needs a local instance of parity client and secret store. You can spin up these services using [oceanprotocol/barge](https://github.com/oceanprotocol/barge):
+Testing needs a local instance of parity client and secret store. You can spin up these services using [nevermined-io/tools](https://github.com/nevermined-io/tools):
 ```bash
-git clone https://github.com/oceanprotocol/barge
+git clone https://github.com/nevermined-io/tools
 cd barge
-bash -x start_ocean.sh --latest --no-brizo --no-pleuston --local-spree-node 2>&1 > start_ocean.log &
+bash -x start_nevermined.sh --latest --local-spree-node 2>&1 > start_nevermined.log &
 ```
 
 To start test you need to:
@@ -179,10 +176,17 @@ npm run release-minor
 npm run release-major
 ```
 
+## Attribution
+
+This project is based in the Ocean Protocol [secret-store-client-js](https://github.com/oceanprotocol/secret-store-client-js).
+It keeps the same Apache v2 License and adds some improvements. See [NOTICE file](NOTICE).
+
 ## License
 
 ```
-Copyright 2018 Ocean Protocol Foundation Ltd.
+Copyright 2020 Keyko GmbH
+This product includes software developed at
+BigchainDB GmbH and Ocean Protocol (https://www.oceanprotocol.com/)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -195,3 +199,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
