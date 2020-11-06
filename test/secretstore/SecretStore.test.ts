@@ -9,7 +9,7 @@ const ssUrl = "http://localhost:12001"
 const testThreshold = 0
 
 const testDocument = {
-    so: "ocean",
+    so: "nevermined",
     soWow: true,
     many: "text is nice to have",
     i: "blow up this document with blind text",

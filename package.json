@@ -1,7 +1,7 @@
 {
-  "name": "@oceanprotocol/secret-store-client",
+  "name": "@nevermined-io/secret-store-client",
   "version": "0.0.15",
-  "description": "JavaScript secret store client for Ocean Protocol",
+  "description": "JavaScript secret store client for Nevermined",
   "main": "dist/SecretStore.js",
   "scripts": {
     "test": "mocha",
@@ -38,15 +38,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oceanprotocol/secret-store-client-js.git"
+    "url": "git+https://github.com/nevermined-io/secret-store-client-js.git"
   },
   "keywords": [],
-  "author": "Ocean Protocol <devops@oceanproocol.com>",
+  "author": "Nevermined <root@nevermined.io",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/oceanprotocol/secret-store-client-js/issues"
+    "url": "https://github.com/nevermined-io/secret-store-client-js/issues"
   },
-  "homepage": "https://github.com/oceanprotocol/secret-store-client-js#readme",
+  "homepage": "https://github.com/nevermined-io/secret-store-client-js#readme",
   "dependencies": {
     "node-fetch": "^2.6.0"
   },
