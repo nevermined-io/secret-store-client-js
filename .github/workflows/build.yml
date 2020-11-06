@@ -24,7 +24,7 @@ jobs:
         rm -rf "${HOME}/.nevermined/nevermined-contracts/artifacts"
         ./start_nevermined.sh --latest --no-commons --no-metadata --no-gateway --no-faucet --no-elastic --no-acl-contract &
         # wait for secret store to be up and running
-        sleep 30
+        ./scripts/wait_for_service localhost:9545
         cd ..
     - name: Run linters
       run: npm run lint
