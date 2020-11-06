@@ -1,6 +1,6 @@
 {
   "name": "@nevermined-io/secret-store-client",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "JavaScript secret store client for Nevermined",
   "main": "dist/SecretStore.js",
   "scripts": {
